@@ -8,6 +8,7 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profileimages/')
     bio = models.TextField(max_length=100)
     user = models.ForeignKey(User)
+    email=models.EmailField(max_length=30)
 
 
     def __str__(self):
@@ -17,3 +18,4 @@ class Pictures(models.Model):
     picture = models.ImageField(upload_to='profileimages/')
     user = models.ForeignKey(User)
     gram_name = models.CharField(max_length=30)
+    description = models.CharField()
