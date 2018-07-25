@@ -6,9 +6,9 @@ from django.db import models
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profileimages/')
-    bio = models.TextField(max_length=100)
+    bio = models.TextField(max_length=100, blank=True, null=True)
     user = models.ForeignKey(User)
-    email=models.EmailField(max_length=30)
+    email=models.EmailField(max_length=30, blank=True, null=True)
 
 
     def __str__(self):
@@ -17,5 +17,5 @@ class Profile(models.Model):
 class Pictures(models.Model):
     picture = models.ImageField(upload_to='profileimages/')
     user = models.ForeignKey(User)
-    gram_name = models.CharField(max_length=30)
-    description = models.CharField()
+    gram_name = models.CharField(max_length=30, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
