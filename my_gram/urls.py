@@ -4,9 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url('^$', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^new/profile/', views.new_profile, name='new-profile'),
-    url(r'^new/picture/', views.upload_pic, name='new-picture')
+    url(r'^new/picture/', views.upload_pic, name='new-picture'),
+    url(r'^show/profile/(?P<user_id>\d+)', views.display_profile, name='show-profile'),
+
 
 ]
 if settings.DEBUG:

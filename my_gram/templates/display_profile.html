@@ -1,0 +1,7 @@
+<!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}}
+<div class="container">
+  {{users.username}} <img src="{{profile.profile_photo.url}}" alt="">
+</div>
+
+
+{% endblock%}
