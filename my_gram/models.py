@@ -19,3 +19,11 @@ class Pictures(models.Model):
     user = models.ForeignKey(User)
     gram_name = models.CharField(max_length=30, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
+
+    @classmethod
+    def get_pictures(cls):
+       pics = cls.objects.all()
+       return pics
+
+    def __str__(self):
+        return self.gram_name

@@ -1,13 +1,24 @@
-<!DOCTYPE html> {% extends 'base.html' %} {% load static %}
-<html lang="en">
+<!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Test</title>
-</head>
+<div class="container">
 
-<body>
+  <!-- Looping through news   -->
+  {% for pic in pics %}
 
-</body>
+  <div class="row">
+    <!-- displaying images -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="{{ pic.picture.url }}">
+    </div>
 
-</html>
+  </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No images to show</h2>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock%}

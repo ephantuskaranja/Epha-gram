@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from .models import Pictures
 # Create your views here.
 from my_gram.forms import ProfileForm, UploadPicForm
 
 
 @login_required(login_url='/accounts/login/')
 def index(request):
+    pics=Pictures.get_pictures()
 
-    return render(request, 'index.html')
+    return render(request, 'index.html',{"pics":pics})
 
 
 def new_profile(request):
@@ -29,7 +30,7 @@ def upload_pic(request):
         form = UploadPicForm(request.POST, request.FILES)
         if form.is_valid():
             pic = form.save(commit=False)
-            profile.user = current_user
+            pic.user = current_user
             pic.save()
     else:
         form = UploadPicForm()
