@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from my_gram.forms import ProfileForm
+from my_gram.forms import ProfileForm, UploadPicForm
 
 
 @login_required(login_url='/accounts/login/')
