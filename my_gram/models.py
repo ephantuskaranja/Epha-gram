@@ -27,3 +27,8 @@ class Pictures(models.Model):
 
     def __str__(self):
         return self.gram_name
+
+class Comment(models.Model):
+    user = models.ForeignKey(User)
+    picture = models.ForeignKey(Pictures)
+    comment_text = models.CharField(max_length=100)
