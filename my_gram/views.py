@@ -48,7 +48,7 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-    return render(request, 'registration_form.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 def activate(request, uidb64, token):
@@ -95,10 +95,12 @@ def upload_pic(request):
 
 
 def display_profile(request, user_id):
-    users = User.objects.get(id=user_id)
-    profile=Profile.objects.get(user=users)
-    print("fchcvvhghfgghf")
-    context={"profile":profile,
-            "users":users
-    }
-    return render(request, 'display_profile.html', context)
+    if request.user.is_active:
+        users = User.objects.get(id=user_id)
+        profile=Profile.objects.get(user=users)
+        data=Pictures.objects.all()
+        context={"profile":profile,
+                "users":users,
+                "data":data
+        }
+        return render(request, 'display_profile.html', context)

@@ -10,6 +10,8 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="pics">
       <a href="{% url 'show-profile' user_id=pic.user.id%}" <p>{{pic.user.username}}</p></a>
       <img src="{{ pic.picture.url }}">
+      <p>{{ pic.description }}</p>
+
 
     </div>
 
