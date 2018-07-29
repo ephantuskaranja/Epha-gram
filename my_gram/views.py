@@ -104,3 +104,21 @@ def display_profile(request, user_id):
                 "data":data
         }
         return render(request, 'display_profile.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def addcomment(request,image_id):
+    current_user = request.user
+    if request.method == 'POST':
+        picture = get_object_or_404(Pictures, pk=picture_id)
+        form = CommentForm(request.POST,request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.picture = picture
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+
+    return render(request, 'index.html',{"form":form})
