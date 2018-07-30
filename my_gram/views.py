@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from .models import Pictures, Profile
+from .models import Pictures, Profile, Comment
 from django.contrib.auth.models import User
-from my_gram.forms import ProfileForm, UploadPicForm
+from my_gram.forms import ProfileForm, UploadPicForm, CommentForm
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -21,8 +21,14 @@ from django.core.mail import EmailMessage
 @login_required(login_url='/accounts/login/')
 def index(request):
     pics = Pictures.get_pictures()
+    form=CommentForm()
+    comments=Comment.objects.all()
+    context={"pics":pics,
+            "form":form,
+            "comments":comments
+    }
 
-    return render(request, 'index.html',{"pics":pics})
+    return render(request, 'index.html', context)
 
 
 def signup(request):
@@ -107,7 +113,7 @@ def display_profile(request, user_id):
 
 
 @login_required(login_url='/accounts/login/')
-def addcomment(request,image_id):
+def addcomment(request,picture_id):
     current_user = request.user
     if request.method == 'POST':
         picture = get_object_or_404(Pictures, pk=picture_id)

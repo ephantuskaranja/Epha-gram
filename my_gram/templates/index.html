@@ -1,4 +1,4 @@
-<!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}}
+<!DOCTYPE html> {% extends 'base.html' %} {% load bootstrap4 %}{% load static %} {% block content %} {{block.super}}
 
 <div class="container">
 
@@ -11,8 +11,7 @@
       <a href="{% url 'show-profile' user_id=pic.user.id%}" <p>{{pic.user.username}}</p></a>
       <img src="{{ pic.picture.url }}">
       <p>{{ pic.description }}</p>
-
-
+      <button type="button" name="button"><img src="static/images/instagram_comment_outline_24.png"></button>
     </div>
 
   </div>
@@ -21,7 +20,13 @@
   <div class="row">
     <h2 class="text-center">There No images to show</h2>
   </div>
-  {% endfor %}
+
+  {% endfor %} {% for comment in comments %} {% if comment.picture_id == pictures.id %}
+  <p>{{ comment.comment_text }}</p>
+  {% endif %} {% endfor %}
+  <form action="{% url 'comment' picture_id=pictures.id%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {% bootstrap_form form %}
+  </form>
 
 </div>
 

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'my_gram',
     'bootstrap4',
+    'friendship',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
