@@ -12,7 +12,7 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        return self.gram_name
+        return self.bio
 
 class Pictures(models.Model):
     picture = models.ImageField(upload_to='profileimages/')

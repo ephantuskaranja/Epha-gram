@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from friendship.models import Follow
+from friendship.models import AlreadyExistsError
 
 
 # Create your views here.
@@ -101,15 +103,20 @@ def upload_pic(request):
 
 @login_required(login_url='/accounts/login/')
 def display_profile(request, user_id):
-    if request.user.is_active:
-        users = User.objects.get(id=user_id)
-        profile=Profile.objects.get(user=users)
-        data=Pictures.objects.all()
-        context={"profile":profile,
-                "users":users,
-                "data":data
-        }
-        return render(request, 'display_profile.html', context)
+    users = User.objects.get(id=user_id)
+    print(users)
+    profile=Profile.objects.get(user=users)
+    followers = len(Follow.objects.followers(users))
+    following = len(Follow.objects.following(users))
+    picts = Pictures.objects.filter(user=users)
+    context={"profile":profile,
+            "picts":picts,
+            "users":users,
+            "followers":followers,
+            "following":following,
+            "follow":follow
+    }
+    return render(request, 'display_profile.html', context)
 
 
 @login_required(login_url='/accounts/login/')
@@ -128,3 +135,14 @@ def addcomment(request,picture_id):
         form = CommentForm()
 
     return redirect(index)
+
+
+@login_required(login_url='/accounts/login/')
+def follow(request,user_id):
+   users = User.objects.get(id=user_id)
+   try:
+       follow = Follow.objects.add_follower(request.user, users)
+   except AlreadyExistsError:
+       return Http404
+       print("fdsfghgfd")
+   return redirect('/show/profile/'+user_id)
