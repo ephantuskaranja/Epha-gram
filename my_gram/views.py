@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from my_gram.forms import ProfileForm, UploadPicForm, CommentForm
 
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -99,7 +99,7 @@ def upload_pic(request):
     return render(request, 'UploadPicForm.html', {"form": form})
 
 
-
+@login_required(login_url='/accounts/login/')
 def display_profile(request, user_id):
     if request.user.is_active:
         users = User.objects.get(id=user_id)
@@ -127,4 +127,4 @@ def addcomment(request,picture_id):
     else:
         form = CommentForm()
 
-    return render(request, 'index.html',{"form":form})
+    return redirect(index)
