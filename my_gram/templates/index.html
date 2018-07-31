@@ -13,7 +13,7 @@
         <img src="{{ pic.picture.url }}">
       </div>
       <p>{{ pic.description }}</p>
-      <button type="button" name="button"><img src="static/images/instagram_comment_outline_24.png"></button>
+
       <form action="{% url 'comment' picture_id=pic.id%}" method="post" enctype="multipart/form-data">
         {% csrf_token %} {% bootstrap_form form %}
       </form>
