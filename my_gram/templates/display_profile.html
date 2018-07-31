@@ -1,4 +1,5 @@
-<!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}}
+<!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}} {% load bootstrap4 %}
+
 <div class="container">
   {{users.username}} <img src="{{profile.profile_photo.url}}" alt="">
   <a href="{% url 'follow' user_id=profile.user.id %}"><button class="btn btn-primary">Follow{{ pictures.users }}</button></a>

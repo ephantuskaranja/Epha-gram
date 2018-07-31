@@ -75,7 +75,7 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-
+@login_required(login_url='/accounts/login/')
 def new_profile(request):
     current_user = request.user
     if request.method == 'POST':
@@ -88,6 +88,7 @@ def new_profile(request):
         form = ProfileForm()
     return render(request, 'new_profile.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def upload_pic(request):
     current_user = request.user
     if request.method == 'POST':
