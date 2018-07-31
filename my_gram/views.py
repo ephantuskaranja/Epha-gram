@@ -26,9 +26,11 @@ def index(request):
     form=CommentForm()
     comments=Comment.objects.all()
     current_user=request.user
+    prof=Profile.objects.all()
     context={"pics":pics,
             "form":form,
             "comments":comments,
+            "prof":prof,
             "current_user":current_user
     }
 
