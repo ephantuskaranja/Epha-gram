@@ -24,8 +24,8 @@ email, a user can follow, like another user and see posted pictures.
   - Clone the Repo from here [https://github.com/ephantuskaranja/Epha-gram.git]
 
 ## Create a Virtual environment
-  -cd to the root directory of the app, open terminal then:
-  -use this command: virtualenv -p python3.6 virtual
+  -go to the root directory of the app, open terminal then:
+  -use this command:'''virtualenv -p python3.6 virtual'''
 
 ## Install Dependencies
   * Install dependancies that will create an environment for the app to run. pip install -r requirements.txt
@@ -44,11 +44,11 @@ email, a user can follow, like another user and see posted pictures.
     ensure you change this file with your database info, then
 
 ## Run migrations
-  * python3.6 manage.py makemigrations Photomania
-  * python3.6 manage.py migrate
+  * '''python3.6 manage.py makemigrations Photomania'''
+  * '''python3.6 manage.py migrate'''
 
 ## Run the App
-    -python3.6 manage.py runserver
+    '''python3.6 manage.py runserver'''
 
 ## Known Bugs
     No bugs so far. If found, email me at ephantusslogan@gmail.com
