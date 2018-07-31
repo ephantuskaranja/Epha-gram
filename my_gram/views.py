@@ -25,9 +25,11 @@ def index(request):
     pics = Pictures.get_pictures()
     form=CommentForm()
     comments=Comment.objects.all()
+    current_user=request.user
     context={"pics":pics,
             "form":form,
-            "comments":comments
+            "comments":comments,
+            "current_user":current_user
     }
 
     return render(request, 'index.html', context)
