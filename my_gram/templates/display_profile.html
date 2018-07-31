@@ -1,6 +1,6 @@
 <!DOCTYPE html> {% extends 'base.html' %} {% load static %} {% block content %} {{block.super}} {% load bootstrap4 %}
-
-<div class="container">
+<link rel="stylesheet" href="{% static 'css/gram.css' %}">
+<div class="container-fluid">
   {{users.username}} <img src="{{profile.profile_photo.url}}" alt="">
   <a href="{% url 'follow' user_id=profile.user.id %}"><button class="btn btn-primary">Follow{{ pictures.users }}</button></a>
   </button>

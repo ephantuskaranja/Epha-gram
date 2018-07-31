@@ -1,4 +1,4 @@
-{% load bootstrap4 %} {% load static %} {{block.super}}
+{% load bootstrap4 %} {% load static %} {{block.super}} {% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
 
@@ -14,14 +14,16 @@
 
 <body>
 
-  <form action="{%url 'new-profile'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%} {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-  </form>
+  <div class="container-fluid">
+    <form action="{%url 'new-profile'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%} {% bootstrap_form form%}
+      <input type="submit" class="btn btn-success btn-lg" value="Post">
+    </form>
 
-  {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+  </div>
 
 </body>
 
