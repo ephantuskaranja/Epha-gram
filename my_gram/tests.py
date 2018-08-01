@@ -58,5 +58,5 @@ class Test_Profile(TestCase):
     #testing save method
     def test_save_method(self):
         self.bio.save_bio()
-        prof = Profile.objects.filter(id=1)
+        prof = Profile.objects.get(user=self.request.user)
         self.assertTrue(prof=='fgghhjfood')
