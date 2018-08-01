@@ -42,7 +42,7 @@ class Test_Comment(TestCase):
     #testing save method
     def test_save_method(self):
         self.comment_text.save_comment()
-        comments = Comment.objects.filter(id=1)
+        comments = Comment.objects.get(user=self.request.user)
         self.assertTrue(comment_text=='fgghhjfood')
 
 
